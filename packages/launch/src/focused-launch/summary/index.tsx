@@ -20,6 +20,7 @@ import { Route } from '../route';
 import { useTitle, useDomainSearch, useSiteDomains } from '../../hooks';
 import { LAUNCH_STORE } from '../../stores';
 import LaunchContext from '../../context';
+import { FOCUSED_LAUNCH_FLOW_ID } from '../../constants';
 
 import './style.scss';
 
@@ -167,7 +168,7 @@ const DomainStep: React.FunctionComponent< DomainStepProps > = ( {
 							onExistingSubdomainSelect={ onExistingSubdomainSelect }
 							initialDomainSearch={ initialDomainSearch }
 							showSearchField={ false }
-							analyticsFlowId="focused-launch"
+							analyticsFlowId={ FOCUSED_LAUNCH_FLOW_ID }
 							analyticsUiAlgo="focused_launch_domain_picker"
 							quantity={ 3 }
 							quantityExpanded={ 3 }
