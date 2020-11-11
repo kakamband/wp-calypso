@@ -55,7 +55,7 @@ function showAppWindow() {
 		mainWindow.webContents.send( 'app-config', Config, Settings.isDebug(), System.getDetails() );
 
 		ipc.on( 'mce-contextmenu', function ( ev ) {
-			mainWindow.send( 'mce-contextmenu', ev );
+			mainWindow.webContents.send( 'mce-contextmenu', ev );
 		} );
 	} );
 
@@ -93,7 +93,6 @@ function showAppWindow() {
 	} );
 
 	mainWindow.loadURL( appUrl );
-	// mainWindow.openDevTools();
 
 	mainWindow.on( 'close', function () {
 		const currentURL = mainWindow.webContents.getURL();

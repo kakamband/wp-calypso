@@ -440,7 +440,6 @@ const boot = ( currentUser, registerRoutes ) => {
 function waitForCookieAuth( user ) {
 	const timeoutMs = 1500;
 	const loggedIn = user.get() !== false;
-	const electron = require( 'electron' );
 
 	const promiseTimeout = ( ms, promise ) => {
 		const timeout = new Promise( ( _, reject ) => {
@@ -457,12 +456,12 @@ function waitForCookieAuth( user ) {
 		return new Promise( function ( resolve ) {
 			const sendUserAuth = () => {
 				debug( 'Sending user info to desktop...' );
-				electron.send( 'user-auth', user, getToken() );
+				window.electron.send( 'user-auth', user, getToken() );
 			};
 
 			if ( loggedIn ) {
 				debug( 'Desktop user logged in, waiting on cookie authentication...' );
-				electron.on( 'cookie-auth-complete', function () {
+				window.electron.receive( 'cookie-auth-complete', function () {
 					debug( 'Desktop cookies set, rendering main layout...' );
 					resolve();
 				} );

@@ -35,13 +35,7 @@
 		"title": "Preferences",
 		"useContentSize": true,
 		"width": 480,
-		"wpDragAndDropDisabled": true,
-		"webPreferences": {
-			"contextIsolation": true,
-			"enableRemoteModule": false,
-			"nodeIntegration": false,
-			"sandbox": true
-		}
+		"wpDragAndDropDisabled": true
 	},
 	"aboutWindow": {
 		"acceptFirstMouse": true,

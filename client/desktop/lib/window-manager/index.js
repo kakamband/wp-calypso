@@ -74,6 +74,10 @@ async function openWindow( windowName ) {
 
 			const webPreferences = Object.assign( {}, config.webPreferences, {
 				preload: path.resolve( __dirname, '..', '..', '..', '..', 'public_desktop', 'preload.js' ),
+				contextIsolation: true,
+				enableRemoteModule: false,
+				nodeIntegration: false,
+				sandbox: true,
 			} );
 			config.webPreferences = webPreferences;
 

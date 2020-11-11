@@ -62,5 +62,11 @@ module.exports = function ( mainWindow ) {
 				zipLogs( mainWindow );
 			},
 		},
+		{
+			label: 'Show Debug Menu',
+			click: function () {
+				mainWindow.openDevTools();
+			},
+		},
 	] );
 };

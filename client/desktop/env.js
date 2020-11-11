@@ -39,6 +39,9 @@ process.env.CALYPSO_ENV = config.calypso_config;
 // Set app config path
 app.setPath( 'userData', appData );
 
+// Default value of `false` deprecated in Electron v9
+app.allowRendererProcessReuse = true;
+
 if ( Settings.isDebug() ) {
 	process.env.DEBUG = config.debug.namespace;
 }
