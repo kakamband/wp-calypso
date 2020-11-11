@@ -19,7 +19,6 @@ const logger = ( namespace, options ) => {
 		silly: ( message, meta ) => send( 'silly', namespace, options, message, meta ),
 	};
 };
-window.logger = logger; // expose logger interface to other renderer processes
 
 const desktop = remote.getGlobal( 'desktop' );
 
@@ -33,4 +32,5 @@ window.electron = {
 	getCurrentWindow: remote.getCurrentWindow,
 	getBuild: () => desktop.config.build,
 	isDebug: () => desktop.settings.isDebug(),
+	logger, // expose logger interface to other renderer processes
 };

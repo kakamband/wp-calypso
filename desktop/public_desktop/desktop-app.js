@@ -84,7 +84,7 @@ function startDesktopApp() {
 	}
 
 	// Uses the logger object instantiated by preload.js
-	log = logger( 'desktop:renderer:browser' ); // eslint-disable-line no-undef
+	log = electron.logger( 'desktop:renderer:browser' ); // eslint-disable-line no-undef
 
 	// Everything is ready, start Calypso
 	log.info( 'Received app configuration, starting in browser' );
