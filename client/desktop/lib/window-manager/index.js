@@ -72,11 +72,7 @@ async function openWindow( windowName ) {
 			let config = Config[ settings.config ];
 			config = setDimensions( config );
 
-			// nodeIntegration is necessary to support usage of `require` in preload and HTML scripts.
-			// FIXME: Refactor preload to use contextBridge instead (contextIsolation: true, nodeIntegration: false).
 			const webPreferences = Object.assign( {}, config.webPreferences, {
-				contextIsolation: false,
-				nodeIntegration: true,
 				preload: path.resolve( __dirname, '..', '..', '..', '..', 'public_desktop', 'preload.js' ),
 			} );
 			config.webPreferences = webPreferences;

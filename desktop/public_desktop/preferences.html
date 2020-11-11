@@ -207,8 +207,8 @@
 	};
 
 	Preferences.prototype.save = function( name, value ) {
-		ipc.send( 'preferences-changed', { name: name, value: value } );
-		ipc.send( 'preferences-changed-' + name, value );
+		window.electron.send( 'preferences-changed', { name: name, value: value } );
+		window.electron.send( 'preferences-changed-' + name, value );
 	};
 
 	Preferences.prototype.updateProxyView = function( proxyType ) {
@@ -250,9 +250,7 @@
 		return document.querySelector( 'select[name=proxy-type]' ).value
 	};
 
-	var electron = require( 'electron' );
-	var ipc = electron.ipcRenderer;
-	var pref = new Preferences( electron.remote.getGlobal( 'desktop' ).settings );
+	var pref = electron.getSettings();
 
 	pref.monitorChanges();
 </script>

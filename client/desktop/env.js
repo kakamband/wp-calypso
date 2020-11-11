@@ -73,9 +73,3 @@ if ( Settings.getSetting( 'proxy-type' ) === '' ) {
 		app.commandLine.appendSwitch( 'proxy-pac-url', Settings.getSetting( 'proxy-pac' ) );
 	}
 }
-
-// Define a global 'desktop' variable that can be used in browser windows to access config and settings
-global.desktop = {
-	config: config,
-	settings: Settings,
-};

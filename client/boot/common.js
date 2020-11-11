@@ -440,7 +440,7 @@ const boot = ( currentUser, registerRoutes ) => {
 function waitForCookieAuth( user ) {
 	const timeoutMs = 1500;
 	const loggedIn = user.get() !== false;
-	const ipc = require( 'electron' ).ipcRenderer;
+	const electron = require( 'electron' );
 
 	const promiseTimeout = ( ms, promise ) => {
 		const timeout = new Promise( ( _, reject ) => {
@@ -457,12 +457,12 @@ function waitForCookieAuth( user ) {
 		return new Promise( function ( resolve ) {
 			const sendUserAuth = () => {
 				debug( 'Sending user info to desktop...' );
-				ipc.send( 'user-auth', user, getToken() );
+				electron.send( 'user-auth', user, getToken() );
 			};
 
 			if ( loggedIn ) {
 				debug( 'Desktop user logged in, waiting on cookie authentication...' );
-				ipc.on( 'cookie-auth-complete', function () {
+				electron.on( 'cookie-auth-complete', function () {
 					debug( 'Desktop cookies set, rendering main layout...' );
 					resolve();
 				} );

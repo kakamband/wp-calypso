@@ -35,7 +35,6 @@ Settings.prototype.isDebug = function () {
  */
 Settings.prototype.getSetting = function ( setting ) {
 	const value = this._getAll()[ setting ];
-	const log = require( 'calypso/desktop/lib/logger' )( 'desktop:settings' );
 
 	if ( typeof value === 'undefined' ) {
 		if ( typeof Config.default_settings[ setting ] !== 'undefined' ) {
@@ -51,8 +50,6 @@ Settings.prototype.getSetting = function ( setting ) {
  * Get a group of settings
  */
 Settings.prototype.getSettingGroup = function ( existing, group, values ) {
-	const log = require( 'calypso/desktop/lib/logger' )( 'desktop:settings' );
-
 	const settingsGroup = this._getAll()[ group ];
 
 	if ( typeof settingsGroup !== 'undefined' ) {

@@ -3,6 +3,12 @@
  */
 const { ipcMain: ipc } = require( 'electron' );
 
+/**
+ * Internal Dependencies
+ */
+const config = require( 'calypso/desktop/lib/config' );
+const settings = require( 'calypso/desktop/lib/settings' );
+
 module.exports = {
 	/**
 	 * JSON object that stores references to loggers initialized
@@ -53,6 +59,14 @@ module.exports = {
 					logger.silly( message, meta );
 					break;
 			}
+		} );
+
+		ipc.handle( 'get-config', () => {
+			return config;
+		} );
+
+		ipc.handle( 'get-settings', () => {
+			return settings;
 		} );
 	},
 };
