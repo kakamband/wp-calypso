@@ -36,6 +36,7 @@
 		{ "path": "../data-stores" },
 		{ "path": "../domain-picker" },
 		{ "path": "../onboarding" },
-		{ "path": "../react-i18n" }
+		{ "path": "../react-i18n" },
+		{ "path": "../calypso-analytics" }
 	]
 }
