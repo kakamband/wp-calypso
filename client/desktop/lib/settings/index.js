@@ -72,6 +72,17 @@ Settings.prototype.saveSetting = function ( group, groupData ) {
 	this.settings = settingsFile.save( group, groupData );
 };
 
+Settings.prototype.flat = function () {
+	const all = this._getAll();
+	const exported = {};
+	if ( all ) {
+		for ( const [ key ] of Object.entries( all ) ) {
+			exported[ key ] = this.getSetting( key );
+		}
+	}
+	return exported;
+};
+
 if ( ! settings ) {
 	settings = new Settings();
 }

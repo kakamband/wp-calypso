@@ -19,4 +19,11 @@ config.isBeta = function () {
 	return this.build === 'beta';
 };
 
+config.flat = function () {
+	return {
+		build: this.build,
+		version: this.version,
+	};
+};
+
 module.exports = config;

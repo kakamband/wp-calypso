@@ -64,7 +64,7 @@
 <body>
 
 <script type="text/javascript">
-	const config = await electron.getConfig();
+	const config = window.electron.config;
 
 	const version = config.version;
 	const build = config.build;

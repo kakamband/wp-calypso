@@ -62,11 +62,11 @@ module.exports = {
 		} );
 
 		ipc.handle( 'get-config', () => {
-			return config;
+			return config.flat();
 		} );
 
 		ipc.handle( 'get-settings', () => {
-			return settings;
+			return settings.flat();
 		} );
 	},
 };

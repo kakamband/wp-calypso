@@ -116,8 +116,7 @@ function startDesktopApp() {
 			}
 		} );
 
-		const buildInfo = electron.getConfig();
-		const build = buildInfo ? buildInfo.build : 'ERR_BUILD_INFO';
+		const build = window.electron.config.build;
 		document.documentElement.classList.add( 'build-' + build );
 
 		if ( navigator.onLine ) {
