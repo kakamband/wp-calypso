@@ -97,17 +97,24 @@ object BuildBaseImages : BuildType({
 				VERSION="%build.number%"
 				BUILDER_IMAGE_NAME="registry.a8c.com/calypso/base"
 				CI_IMAGE_NAME="registry.a8c.com/calypso/ci"
+				CI_DESKTOP_IMAGE_NAME="registry.a8c.com/calypso/ci-desktop"
 				BUILDER_IMAGE="${'$'}{BUILDER_IMAGE_NAME}:${'$'}{VERSION}"
 				CI_IMAGE="${'$'}{CI_IMAGE_NAME}:${'$'}{VERSION}"
+				CI_DESKTOP_IMAGE="${'$'}{CI_DESKTOP_IMAGE_NAME}:${'$'}{VERSION}"
 
 				docker build -f Dockerfile.base --no-cache --target builder -t "${'$'}BUILDER_IMAGE" .
 				docker build -f Dockerfile.base --target ci -t "${'$'}CI_IMAGE" .
+				docker build -f Dockerfile.base --target ci-desktop -t "${'$'}CI_DESKTOP_IMAGE" .
 
 				docker tag "${'$'}BUILDER_IMAGE" "${'$'}{BUILDER_IMAGE_NAME}:latest"
 				docker tag "${'$'}CI_IMAGE" "${'$'}{CI_IMAGE_NAME}:latest"
+				docker tag "${'$'}CI_DESKTOP_IMAGE" "${'$'}{CI_DESKTOP_IMAGE_NAME}:latest"
 
 				docker push "${'$'}CI_IMAGE"
 				docker push "${'$'}{CI_IMAGE_NAME}:latest"
+
+				docker push "${'$'}CI_DESKTOP_IMAGE"
+				docker push "${'$'}{CI_DESKTOP_IMAGE_NAME}:latest"
 
 				docker push "${'$'}BUILDER_IMAGE"
 				docker push "${'$'}{BUILDER_IMAGE_NAME}:latest"
@@ -430,25 +437,6 @@ object RunAllUnitTests : BuildType({
 				nvm install
 
 				yarn components:storybook:start --ci --smoke-test
-			""".trimIndent()
-			dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
-			dockerPull = true
-			dockerImage = "%docker_image%"
-			dockerRunParameters = "-u %env.UID%"
-		}
-		script {
-			name = "Build media-library storybook"
-			executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
-			scriptContent = """
-				set -e
-				export HOME="/calypso"
-				export NODE_ENV="production"
-
-				# Update node
-				. "${'$'}NVM_DIR/nvm.sh" --no-use
-				nvm install
-
-				yarn media-library:storybook:start --ci --smoke-test -h localhost
 			""".trimIndent()
 			dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
 			dockerPull = true
