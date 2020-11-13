@@ -423,6 +423,9 @@ const Summary: React.FunctionComponent = () => {
 			</div>
 			{ disabledSteps.map( ( step, stepIndex ) => step( stepIndex + 1 ) ) }
 			{ activeSteps.map( ( step, stepIndex ) => step( stepIndex + 1 ) ) }
+
+			{ /* @TODO: placeholder for https://github.com/Automattic/wp-calypso/issues/47392 */ }
+			<Link to={ Route.Success }>{ __( 'Launch your site', __i18n_text_domain__ ) }</Link>
 		</div>
 	);
 };
